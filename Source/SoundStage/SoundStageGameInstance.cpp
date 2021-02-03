@@ -7,7 +7,6 @@
 #include "OnlineSessionSettings.h"
 #include "OnlineSubsystemTypes.h"
 #include "GenericPlatform/GenericPlatform.h"
-#include "Misc/Paths.h"
 #include "Templates/SharedPointer.h"
 
 const static FName SESSION_NAME = TEXT("SoundStageGameSession");
@@ -138,7 +137,10 @@ void USoundStageGameInstance::OnCreateSessionComplete(FName SessionName, bool Su
 	if (World == nullptr) return;
 
 	//bUseSeamlessTravel = true;
-	World->ServerTravel(FPaths::GameSourceDir() / "Content/Maps/DefaultMap?listen");
+	World->ServerTravel("DefaultMap?listen");
+
+	//UE_LOG(LogTemp, Warning, TEXT("ServerTravel %s"), "DefaultMap?listen"));
+
 }
 
 void USoundStageGameInstance::OnDestroySessionComplete(FName SessionName, bool Success)
